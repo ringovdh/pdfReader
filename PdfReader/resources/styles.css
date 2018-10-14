@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+/*HELPER can be removed eventually*/
+/*
+    $text-grey: #323C46;
+    $heading-grey: #666666;
+
+    $dark-green: #508590;
+    $light-green: #63B1BC;
+    $flashy-green: #34B78F;
+    $red: #E73C3E;
+
+    $grey-background: #F5F8FA;
+    $grey-light: #F0F0F0;
+    $grey-lighter: ##F8F8F8;
+*/
+
+.root {
+    -fx-font-size: 1em;
+    -fx-font-family: "Open Sans";
+    -fx-text-fill: #323C46;
+}
+
+.text-field:focused {
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: rgba(52, 183, 143, 1);
+}
+
+/* BUTTONS */
+.button {
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 5;
+    -fx-padding: 6px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 1, 0, 0, 0);
+    -fx-background-color: #34B78F;
+}
+.button:hover {
+    -fx-background-color: #70CCB0;
+    -fx-cursor: hand;
+}
+.button.red {
+    -fx-background-color: #E95051;
+}
+.button.red:hover {
+    -fx-background-color: #EB6464;
+}
+.button.dark-green {
+    -fx-background-color: #508590;
+}
+.button.dark-green:hover {
+    -fx-background-color: #749DA6;
+}
+.button.slim-button {
+    -fx-padding: 0px 5px;
+}
+
+/* LABELS + HEADINGS */
+.lblTitle {
+    -fx-text-fill: #666666;
+    -fx-font-size: 18px;
+    -fx-font-family: "Montserrat";
+}
+.label-normal {
+    -fx-font-weight: 700;
+}
+.label-error {
+    -fx-text-fill: #E73C3E;
+    -fx-font-weight: 600;
+    -fx-background-color: #F5C8C3;
+    -fx-border: 1px solid #E73C3E;
+    -fx-padding: 7px;
+}
+.label-info {
+    -fx-font-size: 18px;
+    -fx-text-fill: #34B78F;
+}
+.link {
+    -fx-text-fill: #34B78F;
+}
+.heading1, .heading2, .heading3 {
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: #666666;
+}
+.heading1 {
+    -fx-font-weight: 600;
+    -fx-font-size: 26px;
+}
+.heading2 {
+    -fx-font-weight: 600;
+    -fx-font-size: 22px;
+}
+.heading3 {
+    -fx-font-size: 18px;
+}
+
+/* TAB PANE */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab, .tab-pane .tab-content-area  {
+    -fx-background-color: #F0F0F0;
+}
+
+/* TABLE */
+.table-view,
+.tree-table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+.table-view:focused,
+.tree-table-view:focused {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background,
+.tree-table-view .column-header-background {
+    -fx-background-color: linear-gradient(#63B1BC 0%, #83C1CA 100%);
+}
+.table-view .column-header-background .label,
+.tree-table-view .column-header-background .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-padding: 7px 10px;
+}
+.table-view .column-header,
+.tree-table-view .column-header {
+    -fx-background-color: transparent;
+}
+.table-view .table-cell,
+.tree-table-view .table-cell {
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 7px 10px;
+}
+.table-row-cell,
+.tree-table-row-cell {
+    -fx-background-color: rgba(99, 177, 188, .6);
+    -fx-background-insets: 0, 0 0 1 0;
+}
+.table-row-cell:odd,
+.tree-table-row-cell:odd {
+    -fx-background-color: rgba(99, 177, 188, .4);
+    -fx-background-insets: 0, 0 0 1 0;
+}
+.table-row-cell:selected,
+.tree-table-row-cell:selected {
+    -fx-background-color: #E73C3E;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.table-view *.scroll-bar:horizontal *.increment-arrow,
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+/* ACCORDION */
+.accordion .titled-pane .title {
+    -fx-font-weight: 700;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-background-color: null;
+}
+.accordion .titled-pane > *.content {
+    -fx-background-color: null;
+}
+.accordion .titled-pane > .title > .arrow-button .arrow {
+    -fx-background-color: #508590;
+}
+
+/* HEADER */
+.header {
+   -fx-background-color: #63B1BC;
+   -fx-font-family: "Montserrat";
+}
+.header-logo-background {
+    -fx-background-color: #508590;
+}
+.header-text {
+    -fx-font-size: 30px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFFFF;
+}
+.header-text-subtitle {
+    -fx-font-size: 18px;
+    -fx-font-weight: 300;
+    -fx-text-fill: #666666;
+}
+
+/* MAIN FRAME */
+.main-frame {
+    -fx-background-color: #F0F0F0;
+}
+.main-pane-left {
+    -fx-background-color: #508590;
+    -fx-padding: 20px 20px 20px 20px;
+}
+.main-pane-right {
+    -fx-background-color: #F0F0F0;
+}
+
+/* LOGIN */
+.login-pane {
+    -fx-background-color: #508590;
+}
+.login-pane .heading1 {
+    -fx-text-fill: #FFFFFF;
+}
+.login-pane .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 400;
+}
+
+/* LECTOR VIEW */
+.lector-view-pane .heading2, .lector-view-pane .heading3 {
+    -fx-text-fill: #FFFFFF;
+}
+.lector-view-pane .label-count {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* SELECT LECTOR PANEL */
+.select-lector-panel {
+    -fx-background-color: #508590;
+    -fx-padding: 20px 20px 20px 20px;
+}
+.select-lector-panel .heading2 {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* groene kader */
+/*.lblMotivation{
+    -fx-background: #F5F8FA;
+    -fx-border-color: #34B78F;
+    -fx-border-width: 3;
+    -fx-border-radius: 5;
+    -fx-padding: 6 6 6 6;
+}
+
+.lblUpdateMessage{
+    -fx-font-size: 18px;
+    -fx-text-fill: #34B78F;
+}*/
+
+/*
+.lblTitle{
+    -fx-font-size: 14px;
+    -fx-underline: true;
+    -fx-font-family: "Open Sans"
+}
+*/
+
+/* Message feedback boxes: */
+
+.chat-message-box {
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-background-color: #34B78F;
+}
+.chat-message-box.other_user {
+    -fx-background-color: #2E9FC4;
+}
+.chat-message-box .label {
+    -fx-text-fill: #000000;
+}
+.chat-message-box .label.date {
+    -fx-font-size: 0.8em;
+    -fx-font-family: "Open Sans";
+    -fx-text-fill: #C0E8DC;
+}
+.chat-message-box.other_user .label.date {
+    -fx-text-fill: #C1E5EE;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}

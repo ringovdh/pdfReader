@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  
+<!DOCTYPE hibernate-configuration PUBLIC  
+        "-//Hibernate/Hibernate Configuration DTD 5.3//EN"  
+        "http://www.hibernate.org/dtd/hibernate-configuration-5.3.dtd">  
+<hibernate-configuration>  
+    <session-factory>      
+    	<property name="hbm2ddl.auto">update</property>    
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>    
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/budget_planner</property>    
+        <property name="connection.username">root</property>    
+        <property name="connection.password">root</property>    
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>  
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+           
+        <mapping class="be.yorian.entities.Transactie" /> 
+        <mapping class="be.yorian.entities.Periode" /> 
+    </session-factory>  
+</hibernate-configuration> 
