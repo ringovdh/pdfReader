@@ -20,7 +20,6 @@ public class Transactie {
 	@Column(name = "tx_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	private String txnummer;
 	private String omschrijving;
 	private BigDecimal bedrag;

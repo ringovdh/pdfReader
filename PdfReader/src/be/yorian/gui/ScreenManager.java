@@ -8,13 +8,15 @@ public class ScreenManager {
 
 	private final BudgetAppFrameController budgetAppFrameController;
 	private final TransactieVerdelingFrameController transactieVerdelingFrameController;
-	private final TransactieOverzichtFrameController transactieOverzichtFrameController;
+	private final TransactieMaandOverzichtFrameController transactieMaandOverzichtFrameController;
+	private final TransactieTypeOverzichtFrameController transactieTypeOverzichtFrameController;
 	
 	public ScreenManager(DomeinController domeinController) {
 		
 		this.budgetAppFrameController = new BudgetAppFrameController(domeinController);
 		this.transactieVerdelingFrameController = new TransactieVerdelingFrameController(domeinController);
-		this.transactieOverzichtFrameController = new TransactieOverzichtFrameController(domeinController);
+		this.transactieMaandOverzichtFrameController = new TransactieMaandOverzichtFrameController(domeinController);
+		this.transactieTypeOverzichtFrameController = new TransactieTypeOverzichtFrameController(domeinController);
 	}
 
 	public Parent getFrame() {
@@ -22,16 +24,19 @@ public class ScreenManager {
 		return budgetAppFrameController;
 	}
 
-	public GridPane switchToVerdeling(int id) {
+	public GridPane switchToMaandVerdeling(int id) {
 		
-		return transactieVerdelingFrameController.getPane();
+		return transactieVerdelingFrameController.toonVerdeling(id);
 	}
 
-	public GridPane switchToOverzicht(int id) {
+	public GridPane switchToMaandOverzicht(int id) {
 		
-		return transactieOverzichtFrameController.toonResultaten(id);
+		return transactieMaandOverzichtFrameController.toonResultaten(id);
 	}
 	
-
+	public GridPane switchToTypeOverzicht(String type) {
+		
+		return transactieTypeOverzichtFrameController.toonResultaten(type);
+	}
 
 }

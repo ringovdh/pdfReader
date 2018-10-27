@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import be.yorian.entities.Periode;
 import be.yorian.entities.Transactie;
+import javafx.util.Callback;
 
 public class DomeinController {
 
@@ -37,5 +38,9 @@ public class DomeinController {
 	
 	public ArrayList<Periode>geefAllePeriodes(){
 		return persistenceController.geefAllePeriodes();
+	}
+
+	public ArrayList<Transactie> geefTransactiesPerType(String type) {
+		return persistenceController.geefTransactiesPerType(type);
 	}
 }

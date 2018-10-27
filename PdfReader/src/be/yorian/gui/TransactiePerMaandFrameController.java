@@ -15,7 +15,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public class TransactieFrameController extends SplitPane {
+public class TransactiePerMaandFrameController extends SplitPane {
 
 	private final DomeinController domeinController;
 	private final ScreenManager screenManager;
@@ -31,13 +31,13 @@ public class TransactieFrameController extends SplitPane {
 	private GridPane verdelingPane;
 	
 
-	public TransactieFrameController(DomeinController domeinController, Label messageLabel) {
+	public TransactiePerMaandFrameController(DomeinController domeinController, Label messageLabel) {
 
 		this.domeinController = domeinController;
 		this.messageLabel = messageLabel;
 		this.screenManager = new ScreenManager(domeinController);
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("TransactieDetail.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TransactieMaandDetail.fxml"));
 		loader.setRoot(this);
 		loader.setController(this);
 		try {
@@ -54,8 +54,8 @@ public class TransactieFrameController extends SplitPane {
 	
 	public void toonTransacties() {
 		
-		overzichtPane = screenManager.switchToOverzicht(kiesMaand.getValue().getId());
-		transactiePane.getChildren().remove(verdelingPane);
+		overzichtPane = screenManager.switchToMaandOverzicht(kiesMaand.getValue().getId());
+		transactiePane.getChildren().clear();
 		transactiePane.getChildren().add(overzichtPane);
 		
 	}
@@ -64,8 +64,8 @@ public class TransactieFrameController extends SplitPane {
 
 	public void toonVerdeling() throws IOException {
 		
-		verdelingPane = screenManager.switchToVerdeling(kiesMaand.getValue().getId());
-		transactiePane.getChildren().remove(overzichtPane);
+		verdelingPane = screenManager.switchToMaandVerdeling(kiesMaand.getValue().getId());
+		transactiePane.getChildren().clear();
 		transactiePane.getChildren().add(verdelingPane);
 		
 	}

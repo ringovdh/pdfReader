@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 @SuppressWarnings("rawtypes")
-public class TransactieOverzichtFrameController extends GridPane {
+public class TransactieMaandOverzichtFrameController extends GridPane {
 
 	private final DomeinController domeinController;
 
@@ -63,16 +63,17 @@ public class TransactieOverzichtFrameController extends GridPane {
 
 	
 	
-	public TransactieOverzichtFrameController(DomeinController domeinController) {
+	public TransactieMaandOverzichtFrameController(DomeinController domeinController) {
 
 		this.domeinController = domeinController;
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("TransactieOverzicht.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("TransactieMaandOverzicht.fxml"));
 		loader.setRoot(this);
 		loader.setController(this);
 		try {
 			loader.load();
-		} catch (IOException ex) {
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			throw new RuntimeException(ex);
 		}
 
@@ -82,6 +83,9 @@ public class TransactieOverzichtFrameController extends GridPane {
 	
 	public GridPane toonResultaten(int id) {
 
+		// Maak eerst het overzichtPane terug leeg
+		//overzichtPane.getChildren().clear();
+		
 		// behandel negatieve gedeelte
 		ObservableList<Transactie> negatieveResultaten = geefNegatieveTransacties(id);
 		negatieveTXTable.setItems(negatieveResultaten);

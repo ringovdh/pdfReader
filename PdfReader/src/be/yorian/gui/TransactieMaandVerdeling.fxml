@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root fx:id="verdelingPane" maxWidth="720.0" minWidth="720.0"
-	prefHeight="600" prefWidth="720.0" type="GridPane"
-	xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="verdelingPane" maxWidth="720.0" minWidth="720.0" prefHeight="600" prefWidth="720.0" type="GridPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
 		<ColumnConstraints />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
 	</columnConstraints>
 	<rowConstraints>
-		<RowConstraints />
 		<RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<Label text="Verdeling" />
-		<PieChart prefHeight="0.0" prefWidth="500.0" />
+		<PieChart fx:id="verdelingTaart" prefHeight="563.0" prefWidth="696.0" />
 	</children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </fx:root>

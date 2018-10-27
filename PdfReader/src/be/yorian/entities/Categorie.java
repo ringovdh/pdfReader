@@ -7,6 +7,7 @@ public enum Categorie {
 	AUTO("auto"),
 	BANCCONTACT("banccontact"),
 	BANK("bank"),
+	BELASTINGEN("belastingen"),
 	DIEREN("dieren"),
 	ELECTRO("electro"),
 	ENERGIE("energie"),

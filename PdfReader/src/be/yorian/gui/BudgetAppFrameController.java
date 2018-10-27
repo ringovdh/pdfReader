@@ -20,7 +20,9 @@ public class BudgetAppFrameController extends BorderPane implements Initializabl
 	@FXML
     private Button tabBestandLezen;
 	@FXML
-	private Button tabTransacties;
+	private Button toonTransactiesPerMaand;
+	@FXML
+	private Button toonTransactiesPerType;
 	@FXML
 	private Button toonVerdeling;
 	@FXML
@@ -37,6 +39,7 @@ public class BudgetAppFrameController extends BorderPane implements Initializabl
         try {
             loader.load();
         } catch (IOException ex) {
+        	ex.printStackTrace();
             throw new RuntimeException(ex);
         }
         
@@ -53,8 +56,13 @@ public class BudgetAppFrameController extends BorderPane implements Initializabl
 		this.setCenter(uittrekselFrameController);
 	}
 	
-	public void switchTransactieFrame() {
-		TransactieFrameController transactieFrameController =  new TransactieFrameController(domeinController, messageLabel);
-		this.setCenter(transactieFrameController);
+	public void switchToMaandOverzicht() {
+		TransactiePerMaandFrameController transactiePerMaandFrameController =  new TransactiePerMaandFrameController(domeinController, messageLabel);
+		this.setCenter(transactiePerMaandFrameController);
+	}
+	
+	public void switchToTypeOverzicht() {
+		TransactiePerTypeFrameController transactiePerTypeFrameController = new TransactiePerTypeFrameController(domeinController, messageLabel);
+		this.setCenter(transactiePerTypeFrameController);
 	}
 }

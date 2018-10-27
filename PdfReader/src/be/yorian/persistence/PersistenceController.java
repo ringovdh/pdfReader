@@ -30,6 +30,10 @@ public class PersistenceController {
 	public ArrayList<Periode> geefAllePeriodes() {
 		return getPeriodeRepository().geefAllePeriodes();
 	}
+	
+	public ArrayList<Transactie> geefTransactiesPerType(String type) {
+		return getTransactieRepositorie().geefTransactiesPerType(type);
+	}
 
 	private TransactieRepository getTransactieRepositorie() {
 		if(transactieRepository == null) {
