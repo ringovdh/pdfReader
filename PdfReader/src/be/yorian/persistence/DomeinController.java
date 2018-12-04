@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import be.yorian.entities.Periode;
 import be.yorian.entities.Transactie;
-import javafx.util.Callback;
 
 public class DomeinController {
 
@@ -42,5 +41,42 @@ public class DomeinController {
 
 	public ArrayList<Transactie> geefTransactiesPerType(String type) {
 		return persistenceController.geefTransactiesPerType(type);
+	}
+
+	public String geefPeriodeNaam(int id) {
+		return persistenceController.geefPeriodeNaam(id);
+	}
+
+	public ArrayList<Transactie> geefAllePositieveTransacties() {
+		return persistenceController.geefAllePositieveTransacties();
+	}
+
+	public ArrayList<Transactie> geefAlleNegatieveTransacties() {
+		return persistenceController.geefAlleNegatieveTransacties();
+	}
+
+	public ArrayList<Transactie> geefAllePositieveTransactiesVoorZichtRekening() {
+		return persistenceController.geefAllePositieveTransactiesVoorZichtRekening();
+	}
+
+	public ArrayList<Transactie> geefAlleNegatieveTransactiesVoorZichtRekening() {
+		return persistenceController.geefAlleNegatieveTransactiesVoorZichtRekening();
+	}
+
+	public ArrayList<Transactie> geefAllePositieveTransactiesVoorSpaarRekening() {
+		return persistenceController.geefAllePositieveTransactiesVoorSpaarRekening();
+	}
+	
+	public ArrayList<Transactie> geefAlleNegatieveTransactiesVoorSpaarRekening() {
+		return persistenceController.geefAlleNegatieveTransactiesVoorSpaarRekening();
+	}
+
+	public Transactie controleerTransactie(String txNummer, int periode) {
+		return persistenceController.controleerTransactie(txNummer, periode);
+	}
+
+	public void bewerkTransactie(Transactie tx) {
+		// TODO Auto-generated method stub
+		
 	}
 }

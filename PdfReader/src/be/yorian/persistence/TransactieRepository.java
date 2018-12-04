@@ -77,6 +77,33 @@ public class TransactieRepository {
 		
 		return result;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transactie> geefAllePositieveTransacties() {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.teken = :teken");
+		query.setParameter("teken", "+");
+		
+		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
+		
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transactie> geefAlleNegatieveTransacties() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.teken = :teken");
+		query.setParameter("teken", "-");
+		
+		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
+		
+		return result;
+	}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Transactie> geefTransactiesPerType(String categorie) {
@@ -89,6 +116,75 @@ public class TransactieRepository {
 		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
 		
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transactie> geefAllePositieveTransactiesVoorZichtRekening() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.categorie != :categorie AND tx.teken = :teken");
+		query.setParameter("categorie", "SPAREN");
+		query.setParameter("teken", "+");
+		
+		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
+		
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transactie> geefAlleNegatieveTransactiesVoorZichtRekening() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.categorie != :categorie AND tx.teken = :teken");
+		query.setParameter("categorie", "SPAREN");
+		query.setParameter("teken", "-");
+		
+		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
+		
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transactie> geefAllePositieveTransactiesVoorSpaarRekening() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.categorie = :categorie AND tx.teken = :teken");
+		query.setParameter("categorie", "SPAREN");
+		query.setParameter("teken", "+");
+		
+		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
+		
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transactie> geefAlleNegatieveTransactiesVoorSpaarRekening() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.categorie = :categorie AND tx.teken = :teken");
+		query.setParameter("categorie", "SPAREN");
+		query.setParameter("teken", "-");
+		
+		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
+		
+		return result;
+	}
+
+	public Transactie controleerTransactie(String txNummer, int periode) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession
+				.createQuery("FROM Transactie tx WHERE tx.txnummer = :txNummer AND tx.periode = :periode");
+		query.setParameter("txNummer", txNummer);
+		query.setParameter("periode", periode);
+		
+		Transactie tx = (Transactie)query.uniqueResult();
+		
+		return tx;
 	}
 
 }

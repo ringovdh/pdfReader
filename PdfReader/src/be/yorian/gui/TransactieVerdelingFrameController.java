@@ -1,10 +1,8 @@
 package be.yorian.gui;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.GridPane;
 
@@ -56,7 +53,7 @@ public class TransactieVerdelingFrameController extends GridPane{
 		
 		PieChart verdelingTaart = new PieChart();
 		verdelingTaart.setData(resultatenLijst);
-		verdelingTaart.setTitle("Uitgaven"); 
+		verdelingTaart.setTitle("Uitgaven van de maand " + domeinController.geefPeriodeNaam(id)); 
 		
 		// voeg nieuwe taart toe
 		verdelingPane.getChildren().add(verdelingTaart);

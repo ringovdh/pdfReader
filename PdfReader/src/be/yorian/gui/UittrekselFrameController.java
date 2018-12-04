@@ -3,9 +3,11 @@ package be.yorian.gui;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Optional;
 
 import be.yorian.entities.Categorie;
 import be.yorian.entities.Periode;
+import be.yorian.entities.Spaarpot;
 import be.yorian.entities.Transactie;
 import be.yorian.main.MyPDFReader;
 import be.yorian.persistence.DomeinController;
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -25,6 +28,7 @@ public class UittrekselFrameController extends SplitPane {
 
 	private final DomeinController domeinController;
 	private final FileChooser fileChooser = new FileChooser();
+	private final Spaarpot spaarpot;
 	@FXML
 	private ListView<String> overzichtTX;
 	@FXML
@@ -49,13 +53,19 @@ public class UittrekselFrameController extends SplitPane {
 	private Button bewaarBtn;
 	@FXML
 	private Label messageLabel;
+	@FXML
+	private Label spaarRekening;
+	@FXML
+	private Label zichtRekening;
+
 	
 	private ObservableList<Transactie> txlist;
 
-	public UittrekselFrameController(DomeinController domeinController, Label messageLabel) {
+	public UittrekselFrameController(DomeinController domeinController, Label messageLabel, Spaarpot spaarpot) {
 
 		this.domeinController = domeinController;
 		this.messageLabel = messageLabel;
+		this.spaarpot = spaarpot;
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("BestandLezen.fxml"));
 		loader.setRoot(this);
@@ -65,7 +75,9 @@ public class UittrekselFrameController extends SplitPane {
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
+		
 	}
+
 
 	public void leesBestand() {
 		try {
@@ -108,9 +120,6 @@ public class UittrekselFrameController extends SplitPane {
 			for (Transactie tx : txlist) {
 				overzichtTX.getItems().add("transactie: " + tx.getTxnummer());
 			}
-//			txCategorie.getItems().setAll(Categorie.values());
-//			txPeriode.getItems().setAll(domeinController.geefAllePeriodes());
-//			handleItemClicks();
 		}
 
 		return overzichtTX;
@@ -121,10 +130,14 @@ public class UittrekselFrameController extends SplitPane {
 		overzichtTX.setOnMouseClicked(event -> {
             int selectedIndex = overzichtTX.getSelectionModel().getSelectedIndex();
             bewerkTX(txlist.get(selectedIndex));
+            overzichtTX.getItems().remove(selectedIndex);
+            int aantal = Integer.parseInt(aantalTX.getText());
+            aantalTX.setText(Integer.toString(aantal - 1));
         });
     }
 	
 	private void bewerkTX(Transactie tx) {
+		
 		txNummer.setText(tx.getTxnummer());
 		txDatum.setText(tx.getDatum().toString());
 		txOmschrijving.setText(tx.getOmschrijving());
@@ -135,12 +148,50 @@ public class UittrekselFrameController extends SplitPane {
 		});
 	}
 	
-	public void bewaarTransactie(Transactie tx) {
-		tx.setPeriode(txPeriode.getValue().getId());
-		tx.setOmschrijving(txOmschrijving.getText());
-		tx.setCategorie(txCategorie.getValue().getCategorie());
-		domeinController.bewaarTransactie(tx);
-		messageLabel.setText("Transactie " + tx.getTxnummer() + " is bewaard");
+	public Transactie bewaarTransactie(Transactie tx) {
+		
+		Transactie bestaandeTx = bestaatTransactie(tx);
+		
+		if (bestaandeTx == null) {		
+			tx.setPeriode(txPeriode.getValue().getId());
+			tx.setOmschrijving(txOmschrijving.getText());
+			tx.setCategorie(txCategorie.getValue().getCategorie());
+			
+			domeinController.bewaarTransactie(tx);
+			spaarpot.herBereken(tx);
+			messageLabel.setText("Transactie " + tx.getTxnummer() + " is bewaard");
+		} else {
+			Optional<ButtonType> result = toonAlert(tx);
+			if (result.get() == ButtonType.OK){
+				bestaandeTx.setOmschrijving(txOmschrijving.getText());
+				bestaandeTx.setCategorie(txCategorie.getValue().getCategorie());
+				
+				domeinController.bewaarTransactie(bestaandeTx);
+				spaarpot.herBereken(bestaandeTx);
+				messageLabel.setText("Transactie " + tx.getTxnummer() + " is aangepast");
+			} 
+		}
+		
+		return tx;
 	}
 
+
+	private Transactie bestaatTransactie(Transactie tx) {
+		
+		int periode = txPeriode.getValue().getId();
+		String txNummer = tx.getTxnummer();
+		Transactie bestaandeTx = domeinController.controleerTransactie(txNummer, periode);
+		
+		return bestaandeTx;
+	}
+
+	private Optional<ButtonType> toonAlert(Transactie tx) {
+		
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setHeaderText("Oops! Transactie " + tx.getTxnummer() + " bestaat al.");
+		alert.setContentText("Wil u deze wijzigingen bewaren?");
+		
+		return alert.showAndWait();
+	 	
+	}
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.io.RandomAccessFile;
@@ -55,7 +56,7 @@ public class MyPDFReader {
 		finally {
 			pdDoc.close();
 		}
-		System.out.println(text);
+		// System.out.println(text);
 		return text;
 		
 	}
@@ -67,7 +68,7 @@ public class MyPDFReader {
 		this.lines = text.split("[\\r\\n]+");
 
 		for (String line : this.lines) {
-			
+			System.out.println(line);
 			String words[] = line.split("\\s+");
 			if (words.length >= 2) {
 				
@@ -103,7 +104,6 @@ public class MyPDFReader {
 		
 		tx = new Transactie(eersteLijn[1]);
 		
-		
 		// zoek laatste lijn
 		String laatsteLijn[] = eersteLijn;
 		
@@ -133,6 +133,7 @@ public class MyPDFReader {
 		tx.setOmschrijving(bepaalLangeOmschrijving(eersteLijn.length, eersteLijn));
 	}
 
+	
 	private void mapShortTransactie(String[] words) throws ParseException {
 		
 		int lengte = words.length;
@@ -154,8 +155,10 @@ public class MyPDFReader {
 			omschrijving = omschrijving + words[i] + " ";
 		}
 		System.out.println(omschrijving);
+		
 		return omschrijving;
 	}
+	
 	
 	private String bepaalLangeOmschrijving(int lengte, String[] words) {
 		String omschrijving = "";
@@ -163,11 +166,12 @@ public class MyPDFReader {
 			omschrijving = omschrijving + words[i] + " ";
 		}
 		System.out.println(omschrijving);
+		
 		return omschrijving;
 	}
 
 
-	public <T> T[] concatenate(T[] a, T[] b) {
+	private <T> T[] concatenate(T[] a, T[] b) {
 	    int aLen = a.length;
 	    int bLen = b.length;
 
@@ -178,13 +182,18 @@ public class MyPDFReader {
 
 	    return c;
 	}
+	
+	
 	private boolean heeftTeken(String words[]){
 		
 		boolean heeftTeken = false;
 		int lengte = words.length;
 		
-		if(words[lengte -1].contains("+") || words[lengte -1].equals("-")) {
-			heeftTeken = true;
+		if(words[lengte -1].endsWith("+") || words[lengte -1].equals("-")) {
+			// check of voorlaatste woord een bedrag is.
+			if (Pattern.compile("[0-9]").matcher(words[lengte -2]).find()) {
+				heeftTeken = true;
+			}
 		}
 		
 		return heeftTeken;

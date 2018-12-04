@@ -2,7 +2,7 @@ package be.yorian.entities;
 
 public enum Categorie {
 		
-	ALLLERLEI("allerlei"),
+	ALLERLEI("allerlei"),
 	ACV("acv"),
 	AUTO("auto"),
 	BANCCONTACT("banccontact"),
@@ -20,6 +20,8 @@ public enum Categorie {
 	LENING("lening"),
 	LIDGELD("lidgeld"),
 	LOON("loon"),
+	NIEUWBOUW("NIEUWBOUW"),
+	OPNAMESPAARGELD("opnamespaargeld"),
 	PENSIOENSPAREN("pensioensparen"),
 	SCHOOL("school"),
 	SPAREN("sparen"),

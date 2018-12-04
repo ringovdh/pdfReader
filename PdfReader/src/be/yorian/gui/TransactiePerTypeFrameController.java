@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import be.yorian.entities.Categorie;
-import be.yorian.entities.Periode;
 import be.yorian.persistence.DomeinController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

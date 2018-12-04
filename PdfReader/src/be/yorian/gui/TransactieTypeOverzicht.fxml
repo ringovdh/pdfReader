@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root fx:id="overzichtPane" maxHeight="-Infinity" maxWidth="720.0" minWidth="720.0" prefHeight="600.0" prefWidth="720.0" type="GridPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="overzichtPane" maxHeight="-Infinity" maxWidth="720.0" minWidth="720.0" prefHeight="560.0" prefWidth="720.0" type="GridPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
 		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,7 +24,7 @@
       <RowConstraints maxHeight="373.0" minHeight="200.0" prefHeight="373.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<Label prefHeight="20.0" text="Uitgaven per categorie">
+		<Label prefHeight="20.0" styleClass="heading3" stylesheets="@../../../../resources/styles.css" text="Uitgaven per categorie">
 			<GridPane.margin>
 				<Insets left="10.0" />
 			</GridPane.margin>
@@ -32,11 +32,11 @@
 		<TableView fx:id="TXTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="700.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
 			<columns>
 				<TableColumn fx:id="kolomTx" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="tx" />
-				<TableColumn fx:id="kolomDatum" maxWidth="85.0" minWidth="85.0" prefWidth="85.0" text="datum" />
-				<TableColumn fx:id="kolomOmschrijving" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="omschrijving" />
+				<TableColumn fx:id="kolomDatum" maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="datum" />
+				<TableColumn fx:id="kolomOmschrijving" maxWidth="280.0" minWidth="280.0" prefWidth="280.0" text="omschrijving" />
 				<TableColumn fx:id="kolomBedrag" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" text="bedrag" />
-				<TableColumn fx:id="kolomTeken" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" text="teken" />
-				<TableColumn fx:id="kolomCategorie" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="categorie" />
+				<TableColumn fx:id="kolomTeken" maxWidth="65.0" minWidth="65.0" prefWidth="65.0" text="teken" />
+				<TableColumn fx:id="kolomCategorie" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" text="categorie" />
 			</columns>
 		</TableView>
       <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />

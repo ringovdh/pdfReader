@@ -26,10 +26,14 @@ public class Main extends Application{
         
         parentWindow.setTitle("Beheer uw budget!");
         
-        ScreenManager screenManager = new ScreenManager(domeinController);
-        
+        ScreenManager screenManager = null;
+        try {
+        	screenManager = new ScreenManager(domeinController);
+        } catch(Exception e) {
+        	e.printStackTrace();
+        }
         Scene scene = new Scene(screenManager.getFrame());
-        scene.getStylesheets().add("resources/styles.css");
+        scene.getStylesheets().add("/styles.css");
         parentWindow.setScene(scene);
 
         parentWindow.show();

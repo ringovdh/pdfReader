@@ -64,9 +64,17 @@ public class Transactie {
 	}
 
 	public void setBedrag(String bedrag) {
+	
+		BigDecimal waarde = null;
+	
 		String correctbedrag = bedrag.replace(".", ""); 
 		String juist = correctbedrag.replace(",", ".");
-		BigDecimal waarde = new BigDecimal(juist);
+		try {
+			waarde = new BigDecimal(juist);
+		} catch(Exception e) {
+			System.out.println(bedrag + " is geen bedrag!");
+			e.printStackTrace();
+		}
 		this.bedrag = waarde;
 	}
 	

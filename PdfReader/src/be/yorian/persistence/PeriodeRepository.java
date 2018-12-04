@@ -37,11 +37,22 @@ public class PeriodeRepository {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.beginTransaction();
-		Query query = currentSession.createQuery("FROM  Periode p");
+		Query query = currentSession.createQuery("FROM Periode p");
 
 		ArrayList<Periode> result = (ArrayList<Periode>) query.list();
 
 		return result;
+	}
+
+	public String geefPeriodeNaam(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.beginTransaction();
+		Query query = currentSession.createQuery("FROM Periode p where p.id  = :id");
+		query.setParameter("id", id);
+		
+		Periode result = (Periode) query.uniqueResult();
+
+		return result.getWaarde();
 	}
 
 }

@@ -31,8 +31,40 @@ public class PersistenceController {
 		return getPeriodeRepository().geefAllePeriodes();
 	}
 	
+	public String geefPeriodeNaam(int id) {
+		return getPeriodeRepository().geefPeriodeNaam(id);
+	}
+	
 	public ArrayList<Transactie> geefTransactiesPerType(String type) {
 		return getTransactieRepositorie().geefTransactiesPerType(type);
+	}
+	
+	public ArrayList<Transactie> geefAllePositieveTransacties() {
+		return getTransactieRepositorie().geefAllePositieveTransacties();
+	}
+
+	public ArrayList<Transactie> geefAlleNegatieveTransacties() {
+		return getTransactieRepositorie().geefAlleNegatieveTransacties();
+	}
+	
+	public ArrayList<Transactie> geefAllePositieveTransactiesVoorZichtRekening() {
+		return getTransactieRepositorie().geefAllePositieveTransactiesVoorZichtRekening();
+	}
+	
+	public ArrayList<Transactie> geefAlleNegatieveTransactiesVoorZichtRekening() {
+		return getTransactieRepositorie().geefAlleNegatieveTransactiesVoorZichtRekening();
+	}
+	
+	public ArrayList<Transactie> geefAllePositieveTransactiesVoorSpaarRekening() {
+		return getTransactieRepositorie().geefAllePositieveTransactiesVoorSpaarRekening();
+	}
+	
+	public ArrayList<Transactie> geefAlleNegatieveTransactiesVoorSpaarRekening() {
+		return getTransactieRepositorie().geefAlleNegatieveTransactiesVoorSpaarRekening();
+	}
+	
+	public Transactie controleerTransactie(String txNummer, int periode) {
+		return getTransactieRepositorie().controleerTransactie(txNummer, periode);
 	}
 
 	private TransactieRepository getTransactieRepositorie() {
@@ -47,6 +79,6 @@ public class PersistenceController {
 			periodeRepository = new PeriodeRepository();
 		}
 		return periodeRepository;
-	}
+	}	
 
 }
