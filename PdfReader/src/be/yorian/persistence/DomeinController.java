@@ -2,6 +2,7 @@ package be.yorian.persistence;
 
 import java.util.ArrayList;
 
+import be.yorian.entities.Omschrijving;
 import be.yorian.entities.Periode;
 import be.yorian.entities.Transactie;
 
@@ -78,5 +79,23 @@ public class DomeinController {
 	public void bewerkTransactie(Transactie tx) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ArrayList<String> geefAlleZoektermen() {
+		return persistenceController.geefAlleZoektermen();
+		
+	}
+
+	public Omschrijving geefOmschrijving(String zoekterm) {
+		return persistenceController.geefOmschrijving(zoekterm);
+	}
+
+	public void bewaarZoekterm(Omschrijving omschrijving) {
+		persistenceController.bewaarZoekterm(omschrijving);
+		
+	}
+
+	public ArrayList<Omschrijving> geefAlleOmschrijvingen() {
+		return persistenceController.geefAlleOmschrijvingen();
 	}
 }

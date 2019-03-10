@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 public class TransactiePerTypeFrameController extends SplitPane {
 
 	private final DomeinController domeinController;
+	private final CommonFrameController frameControllerHelper;
 	private final ScreenManager screenManager;
 	@FXML
 	private Label messageLabel;
@@ -33,6 +34,7 @@ public class TransactiePerTypeFrameController extends SplitPane {
 	public TransactiePerTypeFrameController(DomeinController domeinController, Label messageLabel) {
 
 		this.domeinController = domeinController;
+		this.frameControllerHelper = new CommonFrameController();
 		this.messageLabel = messageLabel;
 		this.screenManager = new ScreenManager(domeinController);
 
@@ -46,7 +48,7 @@ public class TransactiePerTypeFrameController extends SplitPane {
 			throw new RuntimeException(ex);
 		}
 
-		vulKeuzeLijst();
+		kiesType.setItems(frameControllerHelper.vulCategorieLijst());
 		
 	}
 
@@ -62,7 +64,7 @@ public class TransactiePerTypeFrameController extends SplitPane {
 	
 	
 	
-	private void vulKeuzeLijst() {
+	public void vulKeuzeLijst() {
 
 		ArrayList<Categorie> types = new ArrayList<>();
 		for (Categorie type : Categorie.values()) {

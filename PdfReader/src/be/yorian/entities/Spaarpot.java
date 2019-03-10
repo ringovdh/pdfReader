@@ -16,6 +16,8 @@ public class Spaarpot {
     private Label zichtRekening;
 	@FXML
 	private Label spaarRekening;
+	private final BigDecimal startBedragSpaarRekening = new BigDecimal("6469.19");
+	private final BigDecimal startBedragZichtRekening = new BigDecimal("2457.21");
 
 	
 	public Spaarpot(DomeinController domeinController, Label zichtRekening, Label spaarRekening) {
@@ -34,12 +36,10 @@ public class Spaarpot {
 				.observableArrayList(domeinController.geefAlleNegatieveTransactiesVoorZichtRekening());
 		BigDecimal totaalPositief = berekenTotaal(positieveResultaten);
 		BigDecimal totaalNegatief = berekenTotaal(negatieveResultaten);			
-		
-		zichtRekening.setText((totaalPositief.subtract(totaalNegatief)).toString());
+		BigDecimal totaalZichtRekening = (startBedragZichtRekening.add(totaalPositief)).subtract(totaalNegatief);
+		zichtRekening.setText(totaalZichtRekening.toString());
 		
 	}
-	
-	
 
 	public void berekenSpaarRekening() {
 		ObservableList<Transactie> positieveResultaten = FXCollections
@@ -48,8 +48,8 @@ public class Spaarpot {
 				.observableArrayList(domeinController.geefAlleNegatieveTransactiesVoorSpaarRekening());
 		BigDecimal totaalPositief = berekenTotaal(positieveResultaten);
 		BigDecimal totaalNegatief = berekenTotaal(negatieveResultaten);
-		
-		spaarRekening.setText((totaalPositief.subtract(totaalNegatief)).toString());
+		BigDecimal totaalSpaarRekening = (startBedragSpaarRekening.add(totaalPositief)).subtract(totaalNegatief);
+		spaarRekening.setText(totaalSpaarRekening.toString());
 		
 	}
 	
@@ -80,10 +80,10 @@ public class Spaarpot {
 		
 		BigDecimal totaal = new BigDecimal(spaarRekening.getText());
 		BigDecimal nieuwTotaal = new BigDecimal(0);
-		if (teken.equals("+")){
+		if (teken.equals("-")){
 			nieuwTotaal = totaal.add(bedrag);
 		}
-		if (teken.equals("-")){
+		if (teken.equals("+")){
 			nieuwTotaal = totaal.subtract(bedrag);
 		}
 		
@@ -103,5 +103,4 @@ public class Spaarpot {
 
 	}
 
-	
 }

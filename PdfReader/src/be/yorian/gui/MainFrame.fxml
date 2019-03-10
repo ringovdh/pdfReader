@@ -17,6 +17,7 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="170.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
@@ -28,6 +29,11 @@
                </GridPane.margin></Button>
             <Button fx:id="bestandLezen" mnemonicParsing="false" onAction="#switchUittrekselFrame" text="Lees uittreksel" GridPane.halignment="CENTER" />
             <Button fx:id="toonTransactiesPerType" mnemonicParsing="false" onAction="#switchToTypeOverzicht" text="Overzicht per type" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="tabBeheerOmschrijvingen" mnemonicParsing="false" onAction="#switchToBeheerOmschrijving" text="Beheer omschrijvingen" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>

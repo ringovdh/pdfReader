@@ -25,6 +25,8 @@ public class BudgetAppFrameController extends BorderPane {
 	@FXML
 	private Button toonTransactiesPerType;
 	@FXML
+	private Button tabBeheerOmschrijvingen;
+	@FXML
 	private Button toonVerdeling;
 	@FXML
     private Label messageLabel;
@@ -75,5 +77,11 @@ public class BudgetAppFrameController extends BorderPane {
 		TransactiePerTypeFrameController transactiePerTypeFrameController = new TransactiePerTypeFrameController(domeinController, messageLabel);
 		messageLabel.setText("Bekijk een overzicht per categorie");
 		this.setCenter(transactiePerTypeFrameController);
+	}
+	
+	public void switchToBeheerOmschrijving() {
+		BeheerOmschrijvingFrameController beheerOmschrijvingFrameController = new BeheerOmschrijvingFrameController(domeinController, messageLabel);
+		messageLabel.setText("Beheer hier de omschrijving van een transactie");
+		this.setCenter(beheerOmschrijvingFrameController);
 	}
 }

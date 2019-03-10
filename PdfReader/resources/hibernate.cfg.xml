@@ -15,5 +15,6 @@
            
         <mapping class="be.yorian.entities.Transactie" /> 
         <mapping class="be.yorian.entities.Periode" /> 
+        <mapping class="be.yorian.entities.Omschrijving" />
     </session-factory>  
 </hibernate-configuration> 

@@ -3,9 +3,11 @@ package be.yorian.gui;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import be.yorian.entities.Categorie;
+import be.yorian.entities.Omschrijving;
 import be.yorian.entities.Periode;
 import be.yorian.entities.Spaarpot;
 import be.yorian.entities.Transactie;
@@ -92,7 +94,7 @@ public class UittrekselFrameController extends SplitPane {
 		}
 		txCategorie.getItems().setAll(Categorie.values());
 		txPeriode.getItems().setAll(domeinController.geefAllePeriodes());
-		handleItemClicks();
+		indienOpEenTransactieGeklikt();
 	}
 
 	private void configureFileChooser(FileChooser fileChooser, String titel) {
@@ -125,7 +127,7 @@ public class UittrekselFrameController extends SplitPane {
 		return overzichtTX;
 	}
 
-	private void handleItemClicks()
+	private void indienOpEenTransactieGeklikt()
     {
 		overzichtTX.setOnMouseClicked(event -> {
             int selectedIndex = overzichtTX.getSelectionModel().getSelectedIndex();
@@ -140,7 +142,7 @@ public class UittrekselFrameController extends SplitPane {
 		
 		txNummer.setText(tx.getTxnummer());
 		txDatum.setText(tx.getDatum().toString());
-		txOmschrijving.setText(tx.getOmschrijving());
+		convertOmschrijving(tx.getOmschrijving());
 		txTeken.setText(tx.getTeken());
 		txBedrag.setText(tx.getBedrag().toString());
 		bewaarBtn.setOnAction(event ->{
@@ -148,6 +150,25 @@ public class UittrekselFrameController extends SplitPane {
 		});
 	}
 	
+	private void convertOmschrijving(String origineleOmschrijving) {
+		
+		String aangepasteOmschrijving = origineleOmschrijving.toLowerCase();
+		boolean isGewijzigd = false;
+		ArrayList<Omschrijving> lijstMetOmschrijvingen = domeinController.geefAlleOmschrijvingen();
+		
+		for (Omschrijving omschrijving : lijstMetOmschrijvingen) {
+			if(aangepasteOmschrijving.contains(omschrijving.getZoekterm())) {
+				txOmschrijving.setText(omschrijving.getOmschrijving());
+				txCategorie.setValue(Categorie.valueOf(omschrijving.getCategorie()));
+				isGewijzigd = true;
+			}
+		}
+		if (!isGewijzigd) {
+			txOmschrijving.setText(origineleOmschrijving);
+		}
+	}
+
+
 	public Transactie bewaarTransactie(Transactie tx) {
 		
 		Transactie bestaandeTx = bestaatTransactie(tx);
@@ -167,7 +188,6 @@ public class UittrekselFrameController extends SplitPane {
 				bestaandeTx.setCategorie(txCategorie.getValue().getCategorie());
 				
 				domeinController.bewaarTransactie(bestaandeTx);
-				spaarpot.herBereken(bestaandeTx);
 				messageLabel.setText("Transactie " + tx.getTxnummer() + " is aangepast");
 			} 
 		}

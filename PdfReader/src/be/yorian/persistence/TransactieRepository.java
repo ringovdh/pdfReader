@@ -40,9 +40,7 @@ public class TransactieRepository {
 		currentSession.beginTransaction();
 		Query query = currentSession
 				.createQuery("FROM Transactie tx WHERE MONTH(tx.datum) = :maand");
-		query.setParameter("maand", maand);
-		
-		
+		query.setParameter("maand", maand);	
 		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
 		
 		return result;
@@ -153,7 +151,7 @@ public class TransactieRepository {
 		Query query = currentSession
 				.createQuery("FROM Transactie tx WHERE tx.categorie = :categorie AND tx.teken = :teken");
 		query.setParameter("categorie", "SPAREN");
-		query.setParameter("teken", "+");
+		query.setParameter("teken", "-"); // teken bekijken vanuit zichtrekening
 		
 		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
 		
@@ -167,7 +165,7 @@ public class TransactieRepository {
 		Query query = currentSession
 				.createQuery("FROM Transactie tx WHERE tx.categorie = :categorie AND tx.teken = :teken");
 		query.setParameter("categorie", "SPAREN");
-		query.setParameter("teken", "-");
+		query.setParameter("teken", "+"); // teken bekijken vanuit zichtrekening 
 		
 		ArrayList<Transactie> result = (ArrayList<Transactie>) query.list();
 		
